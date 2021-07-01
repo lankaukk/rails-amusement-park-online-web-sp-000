@@ -9,7 +9,7 @@
     <tr>
       <td><%= attraction.name %></td>
       <td><%= attraction.tickets %></td>
-      <% if @user.admin == true %>
+      <% if current_user.admin == true %>
         <td><%= link_to "Show #{attraction.name}", attraction_path(attraction) %></td>
       <% else %>
         <td><%= link_to "Go on #{attraction.name}", attraction_path(attraction) %></td>
@@ -18,6 +18,6 @@
   <% end %>
 </table>
 
-<% if @user.admin == true %>
+<% if current_user.admin == true %>
   <%= link_to "New Attraction", new_attraction_path %>
 <% end %>

@@ -1,7 +1,12 @@
 <h1><%= @attraction.name %></h1>
 
-<% if @user.admin == true %>
+<% if current_user.admin == true %>
   <%= link_to 'Edit Attraction', edit_attraction_path(@attraction), class: "btn btn-primary" %>
 <% else %>
-  <%= link_to 'Go on this ride', take_ride_path(@attraction), method: :post, class: "btn btn-primary" %>
+    <%= form_for @ride do |f| %>
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :attraction_id %>
+        <%= f.submit "Go On this Ride", class:"btn btn-light" %>
+    <% end %>
+
 <% end %>
